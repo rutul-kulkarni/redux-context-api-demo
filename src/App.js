@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Cart from "./Cart";
+import ContextAction from "./ContextAction";
+import ReduxAction from "./ReduxAction";
+import { CartContext } from "./utils/cartContext";
 
 function App() {
+  const [contextCartItem, setContextCartItem] = useState(0);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CartContext.Provider value={{ contextCartItem, setContextCartItem }}>
+      <div className="App">
+        <Cart />
+
+        <div style={{ display: "flex", justifyContent: "space-around" }}>
+          <div>
+            <ReduxAction />
+          </div>
+          <div>
+            <ContextAction />
+          </div>
+        </div>
+      </div>
+    </CartContext.Provider>
   );
 }
 
