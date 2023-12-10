@@ -1,28 +1,19 @@
-import { useState } from "react";
-import "./App.css";
-import Cart from "./Cart";
-import ContextAction from "./ContextAction";
-import ReduxAction from "./ReduxAction";
-import { CartContext } from "./utils/cartContext";
+import { Route, Routes } from "react-router-dom";
+import ReduxContextAPI from "./views/redux-context-api/ReduxContextAPI";
+import Layout from "./views";
+import Home from "./views/back";
+import Timer from "./views/timer";
 
 function App() {
-  const [contextCartItem, setContextCartItem] = useState(0);
-
   return (
-    <CartContext.Provider value={{ contextCartItem, setContextCartItem }}>
-      <div className="App">
-        <Cart />
-
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <div>
-            <ReduxAction />
-          </div>
-          <div>
-            <ContextAction />
-          </div>
-        </div>
-      </div>
-    </CartContext.Provider>
+    <>
+      <Home />
+      <Routes>
+        <Route path="/" element={<Layout />} />
+        <Route path="/redux-context-api" element={<ReduxContextAPI />} />
+        <Route path="/timer" element={<Timer />} />
+      </Routes>
+    </>
   );
 }
 

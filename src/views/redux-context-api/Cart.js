@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import React, { useContext } from "react";
-import { CartContext } from "./utils/cartContext";
+import { CartContext } from "../../utils/cartContext";
 
 function Cart() {
   const reduxCartItem = useSelector((store) => store.cart.items);
